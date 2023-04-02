@@ -98,7 +98,7 @@ export default function SearchAppBar({ searchParams, setSearchParams }) {
           <IconButton>
             <LoginIcon />
           </IconButton>
-          <a className="sign-in" href="">
+          <a className="sign-in" href="/login">
             Sign in
           </a>
         </Toolbar>
