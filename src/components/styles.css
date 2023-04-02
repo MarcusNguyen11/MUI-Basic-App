@@ -1,0 +1,21 @@
+.sign-in-button {
+    display: flex;
+    /* justify-content: flex-end; */
+    /* align-items: flex-end; */
+    /* justify-self: flex-end; */
+    /* align-self: flex-end; */
+    padding: 0;
+    margin: none;
+}
+.img-button {
+    padding: 0;
+    background-color: black;
+}
+
+.sign-in {
+    color: white;
+    text-decoration: none;
+}
+.space {
+    flex: 1;
+}
