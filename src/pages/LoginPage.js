@@ -1,14 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { FormProvider, FTextField, FCheckBox } from "../components/form";
-import { useForm, useFormContext, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Stack } from "@mui/system";
-import {
-  Alert,
-  FormControlLabel,
-  IconButton,
-  InputAdornment,
-} from "@mui/material";
+import { Alert, IconButton, InputAdornment } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -22,10 +17,8 @@ function LoginPage() {
 
   const methods = useForm({ defaultValues });
   const {
-    reset,
     setError,
     handleSubmit,
-    control,
     formState: { errors, isSubmitting },
   } = methods;
   const [showPassword, setShowPassword] = useState(false);
