@@ -20,7 +20,6 @@ function LoginPage({ setIsLogin, isLogin }) {
 
   const methods = useForm({ defaultValues });
   const {
-    setError,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = methods;
