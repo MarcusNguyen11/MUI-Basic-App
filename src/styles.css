@@ -2,3 +2,74 @@
   display: flex;
   justify-content: center;
 }
+
+.login {
+  width: 30vw;
+  height: 60vh;
+  position: absolute;
+  top: 25%;
+  left: 35%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px;
+} 
+
+@media screen and (max-width: 1280px) {
+  .login {
+    width: 30vw;
+    height: 60vh;
+    position: absolute;
+    top: 25%;
+    left: 35%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 14px;
+  } 
+}
+
+@media screen and (max-width: 912px) {
+  .login {
+    width: 40vw;
+    height: 40vh;
+    top: 20%;
+    left: 30%;
+  } 
+}
+
+@media screen and (max-width: 840px) {
+  .login {
+    width: 60vw;
+    height: 60vh;
+    top: 25%;
+    left: 20%;
+  } 
+}
+@media screen and (max-width: 414px) {
+  .login {
+    width: 60vw;
+    height: 60vh;
+    top: 25%;
+    left: 20%;
+  } 
+}
+
+@media screen and (max-width: 375px) {
+  .login {
+    width: 60vw;
+    height: 60vh;
+    top: 25%;
+    left: 20%;
+  } 
+}
+@media screen and (max-width: 280px) {
+  .login {
+    width: 70vw;
+    height: 60vh;
+    top: 25%;
+    left: 15%;
+  } 
+}

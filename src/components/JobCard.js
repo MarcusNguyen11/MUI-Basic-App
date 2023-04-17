@@ -6,12 +6,15 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
-import { useNavigate } from "react-router";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import { IconButton } from "@mui/material";
 
-export default function MiddleDividers({ job }) {
+export default function MiddleDividers({ job, isLogin }) {
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log("String more information", isLogin);
   return (
-    <Box sx={{ padding: 1,  bgcolor: "SlateGray" }}>
+    <Box sx={{ padding: 1, bgcolor: "SlateGray" }}>
       <Box sx={{ my: 3, mx: 2 }}>
         <Grid container alignItems="center">
           <Grid item xs>
@@ -29,16 +32,28 @@ export default function MiddleDividers({ job }) {
         <Typography gutterBottom variant="body1">
           Skill Requirement
         </Typography>
-        <Stack sx={{flexWrap:"wrap"}} gap={1} direction="row" spacing={0.5}>
+        <Stack sx={{ flexWrap: "wrap" }} gap={1} direction="row" spacing={0.5}>
           {job.skills.slice(0, 4).map((skill) => (
             <Chip label={skill} size="small" color="default" />
           ))}
         </Stack>
       </Box>
       <Box sx={{ mt: 3, ml: 1, mb: 1 }}>
-        <Button onClick={() => navigate(`/job/${job.id}`)}>
-          More Information
-        </Button>
+        {isLogin ? (
+          <Button onClick={() => navigate(`/job/${job.id}`)}>
+            More Information
+          </Button>
+        ) : (
+          <Link
+            to="/login"
+            state={{ background: location }}
+            className="sign-in"
+          >
+            {" "}
+            <IconButton></IconButton>
+            More Information
+          </Link>
+        )}
       </Box>
     </Box>
   );

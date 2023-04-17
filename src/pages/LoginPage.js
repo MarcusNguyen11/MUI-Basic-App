@@ -7,11 +7,14 @@ import { Alert, IconButton, InputAdornment } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
 
-function LoginPage() {
+function LoginPage({ setIsLogin, isLogin }) {
+  const navigate = useNavigate();
   const defaultValues = {
     username: "tuannv",
-    password: "123",
+    password: "123456789",
     remember: true,
   };
 
@@ -22,13 +25,16 @@ function LoginPage() {
     formState: { errors, isSubmitting },
   } = methods;
   const [showPassword, setShowPassword] = useState(false);
-
+  console.log(isLogin);
   const onSubmit = (data) => {
     console.log(data);
-    setError("afterSubmit", { message: "Server Response Error" });
+    navigate(`/`);
+    console.log(isLogin);
+    setIsLogin(true);
   };
+
   return (
-    <div>
+    <div className="login">
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3}>
           {!!errors.afterSubmit && (
@@ -67,12 +73,21 @@ function LoginPage() {
         <LoadingButton
           fullWidth
           size="large"
-          type="submid"
+          type="submit"
           variant="contained"
           loading={isSubmitting}
         >
           Login
         </LoadingButton>
+        <Button
+          fullWidth
+          size="large"
+          variant="contained"
+          sx={{ mt: 2 }}
+          onClick={() => navigate(-1)}
+        >
+          Exit
+        </Button>
       </FormProvider>
     </div>
   );

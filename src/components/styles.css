@@ -19,3 +19,8 @@
 .space {
     flex: 1;
 }
+
+.sign-out {
+    color: white;
+    text-decoration: none;
+}

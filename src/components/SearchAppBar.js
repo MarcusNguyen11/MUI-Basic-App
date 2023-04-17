@@ -10,6 +10,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import LoginIcon from "@mui/icons-material/Login";
 import "./styles.css";
+import { Link, useLocation } from "react-router-dom";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -53,7 +55,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar({ searchParams, setSearchParams }) {
+export default function SearchAppBar({
+  searchParams,
+  setSearchParams,
+  isLogin,
+  setIsLogin,
+}) {
+  const location = useLocation();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -95,12 +104,36 @@ export default function SearchAppBar({ searchParams, setSearchParams }) {
             />
           </Search>
           <div className="space"></div>
-          <IconButton>
-            <LoginIcon />
-          </IconButton>
-          <a className="sign-in" href="/login">
-            Sign in
-          </a>
+          {isLogin ? (
+            <>
+              <label>Hi tuannv</label>
+              <Link
+                to="/"
+                onClick={() => setIsLogin(false)}
+                className="sign-out"
+              >
+                {" "}
+                <IconButton>
+                  <LogoutIcon />
+                </IconButton>
+                Sign out
+              </Link>
+            </>
+          ) : (
+            location.pathname !== "/login" && (
+              <Link
+                to="/login"
+                state={{ background: location }}
+                className="sign-in"
+              >
+                {" "}
+                <IconButton>
+                  <LoginIcon />
+                </IconButton>
+                Sign in
+              </Link>
+            )
+          )}
         </Toolbar>
       </AppBar>
     </Box>

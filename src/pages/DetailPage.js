@@ -5,7 +5,9 @@ import { useParams } from "react-router-dom";
 import { Container } from "@mui/system";
 import { Grid, Typography } from "@mui/material";
 
-function DetailPage() {
+
+
+function DetailPage({isLogin}) {
   const params = useParams();
   const jobId = params.id;
   const job = jobs.find((job) => job.id === jobId);
@@ -19,7 +21,7 @@ function DetailPage() {
   return (
     <Container sx={{ with: 900 }}>
       <Grid>
-        <JobCard job={job} />
+        <JobCard job={job} isLogin={isLogin} />
       </Grid>
     </Container>
   );

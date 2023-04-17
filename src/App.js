@@ -9,7 +9,8 @@ import jobdata from "./jobs.json";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import LoginPage from "./pages/LoginPage";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useLocation } from "react-router-dom";
+// import Modal from "./components/Modal";
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -18,6 +19,7 @@ const darkTheme = createTheme({
 
 function App() {
   const [page, setPage] = React.useState(1);
+  const [isLogin, setIsLogin] = useState(false);
   const handleChange = (event, value) => {
     setPage(value);
   };
@@ -40,6 +42,9 @@ function App() {
     }
   }, [searchParams]);
 
+  const location = useLocation();
+  const background = location.state && location.state.background;
+
   return (
     <div>
       <ThemeProvider theme={darkTheme}>
@@ -47,8 +52,10 @@ function App() {
         <SearchAppBar
           searchParams={searchParams}
           setSearchParams={setSearchParams}
+          isLogin={isLogin}
+          setIsLogin={setIsLogin}
         />
-        <Routes>
+        <Routes location={background || location}>
           <Route
             path="/"
             element={
@@ -57,20 +64,26 @@ function App() {
                 page={page}
                 itemPerPage={itemPerPage}
                 searchParams={searchParams}
+                isLogin={isLogin}
               />
             }
           />
-          <Route path="/job/:id" element={<DetailPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/job/:id" element={<DetailPage isLogin={isLogin} />} />
+          <Route path="/login" element={<LoginPage setIsLogin={setIsLogin} isLogin={isLogin} />} />
         </Routes>
+        {background && (
+        <Routes>
+          <Route path="/login" element={<LoginPage setIsLogin={setIsLogin} isLogin={isLogin} />} />
+        </Routes>
+      )}
         <div className="pagination">
-          <Pagination
-            sx={{ mt: 1 }}
-            count={Math.trunc((jobs.length - 1) / itemPerPage) + 1}
-            page={page}
-            onChange={handleChange}
-          />
-        </div>
+            <Pagination
+              sx={{ mt: 1 }}
+              count={Math.trunc((jobs.length - 1) / itemPerPage) + 1}
+              page={page}
+              onChange={handleChange}
+            />
+          </div>
       </ThemeProvider>
     </div>
   );
