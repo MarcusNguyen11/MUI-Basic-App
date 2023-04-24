@@ -110,6 +110,7 @@ export default function SearchAppBar({
               <Link
                 to="/"
                 onClick={() => setIsLogin(false)}
+                state={{ background: location }}
                 className="sign-out"
               >
                 {" "}

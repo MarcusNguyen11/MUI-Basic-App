@@ -10,7 +10,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 
-function LoginPage({ setIsLogin, isLogin }) {
+function LoginPage({ setIsLogin, isLogin, job }) {
   const navigate = useNavigate();
   const defaultValues = {
     username: "tuannv",
@@ -26,8 +26,10 @@ function LoginPage({ setIsLogin, isLogin }) {
   const [showPassword, setShowPassword] = useState(false);
   console.log(isLogin);
   const onSubmit = (data) => {
-    console.log(data);
-    navigate(`/`);
+    console.log(job, setIsLogin);
+    if (!job) {
+      navigate(`/`);
+    }
     console.log(isLogin);
     setIsLogin(true);
   };

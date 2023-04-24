@@ -1,18 +1,14 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
-import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
-import { useNavigate } from "react-router-dom";
 
-export default function MiddleDividers({ job, isLogin }) {
-  const navigate = useNavigate();
-
+export default function MiddleDividers({ job }) {
   return (
-    <Box sx={{ padding: 1, bgcolor: "SlateGray", height: 460 }}>
+    <Box sx={{ padding: 1, bgcolor: "SlateGray", height: 350 }}>
       <Box sx={{ my: 3, mx: 2 }}>
         <Grid container alignItems="center">
           <Grid item xs>
@@ -35,11 +31,6 @@ export default function MiddleDividers({ job, isLogin }) {
             <Chip label={skill} size="small" color="default" />
           ))}
         </Stack>
-      </Box>
-      <Box sx={{ mt: 3, ml: 1, mb: 1 }}>
-        <Button onClick={() => navigate(`/job/${job.id}`)}>
-          More Information
-        </Button>
       </Box>
     </Box>
   );

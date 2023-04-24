@@ -1,4 +1,3 @@
-import { Pagination } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import SearchAppBar from "./components/SearchAppBar";
@@ -10,7 +9,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import LoginPage from "./pages/LoginPage";
 import { useSearchParams, useLocation } from "react-router-dom";
-// import Modal from "./components/Modal";
+
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -18,12 +17,12 @@ const darkTheme = createTheme({
 });
 
 function App() {
+  const itemPerPage = 5;
   const [page, setPage] = React.useState(1);
-  const [isLogin, setIsLogin] = useState(false);
   const handleChange = (event, value) => {
     setPage(value);
   };
-  const itemPerPage = 5;
+  const [isLogin, setIsLogin] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
   const [jobs, setJobs] = useState(jobdata);
 
@@ -65,25 +64,27 @@ function App() {
                 itemPerPage={itemPerPage}
                 searchParams={searchParams}
                 isLogin={isLogin}
+                handleChange={handleChange}
               />
             }
           />
-          <Route path="/job/:id" element={<DetailPage isLogin={isLogin} />} />
-          <Route path="/login" element={<LoginPage setIsLogin={setIsLogin} isLogin={isLogin} />} />
+          <Route
+            path="/job/:id"
+            element={<DetailPage setIsLogin={setIsLogin} isLogin={isLogin} />}
+          />
+          <Route
+            path="/login"
+            element={<LoginPage setIsLogin={setIsLogin} isLogin={isLogin} />}
+          />
         </Routes>
         {background && (
-        <Routes>
-          <Route path="/login" element={<LoginPage setIsLogin={setIsLogin} isLogin={isLogin} />} />
-        </Routes>
-      )}
-        <div className="pagination">
-            <Pagination
-              sx={{ mt: 1 }}
-              count={Math.trunc((jobs.length - 1) / itemPerPage) + 1}
-              page={page}
-              onChange={handleChange}
+          <Routes>
+            <Route
+              path="/login"
+              element={<LoginPage setIsLogin={setIsLogin} isLogin={isLogin} />}
             />
-          </div>
+          </Routes>
+        )}
       </ThemeProvider>
     </div>
   );
